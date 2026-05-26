@@ -1,0 +1,64 @@
+const Cart = require("../models/Cart");
+const Product= require("../models/Product");
+
+const showAddProductPage=(req,res)=>{
+    res.render("pages/addProduct");
+}
+const addProduct= async(req,res)=>{
+    try{
+        const {title,description,price,image}=req.body;
+        const product= new Product({
+            title,
+            description,
+            price,
+            image
+        });
+        await product.save();
+        res.redirect("/products");
+    }catch(error){
+        console.log(error);
+        res.send("Add Product Failed");
+    }
+}
+const showProducts=async (req,res)=>{
+    try{
+        const products=await Product.find();
+        res.render("pages/products",{products});
+    }catch(error){
+        console.log(error);
+        res.send("cannot fetch products");
+    } 
+}
+const showSingleProduct=async (req,res)=>{
+    try{
+        const product= await Product.findById(req.params.id);
+    if(!product){
+        return res.send("product not found");
+    }
+    res.render("pages/productDetails",{product});
+    }catch(error){
+        console.log(error);
+        res.send("Failed to fetch product details");
+    }
+}
+const showCart= async(req,res)=>{
+    try{
+        const cart= await Cart.find({
+            user:user.session.id
+        })
+
+    }catch(error){
+
+    }
+}
+const addToCart= async(req,res)=>{
+
+}
+module.exports={
+    showAddProductPage,
+    addProduct,
+    showProducts,
+    showSingleProduct,
+    showCart,
+    addToCart     
+}

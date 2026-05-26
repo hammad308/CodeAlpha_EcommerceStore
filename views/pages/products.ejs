@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Products</title>
+</head>
+
+<body>
+    <h1>All Products</h1>
+    <div style="display: flex; gap:30px">
+        <% products.forEach(product=>{ %>
+            <div style="border:1px solid black; padding: 10px; margin: 10px;">
+                <img src="<%= product.image %>" width="200">
+                <a href="/products/<%= product._id %>">
+                    <h2>
+                        <%= product.title %>
+                    </h2>
+                </a>
+
+                <p>
+                    <%= product.description %>
+                </p>
+                <h3>Rs <%= product.price %>
+                </h3>
+            </div>
+            <% }) %>
+    </div>
+
+</body>
+
+</html>
