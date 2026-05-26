@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cart</title>
+</head>
+
+<body>
+    <h1>Your Cart</h1>
+    <div style="display: flex; gap:30px">
+        <% if(cart && cart.items.length>0){%>
+            <% cart.items.forEach(item=>{ %>
+                <div style="border:1px solid black; padding: 10px; margin: 10px;">
+                    <img src="<%= item.product.image %>" width="200">
+                    <h2>
+                        <%= item.product.title %>
+                    </h2>
+                    <h3>Price: Rs <%= item.product.price %>
+                    </h3>
+                    <p>
+                        Quantity: <%= item.quantity %>
+                    </p>
+                </div>
+                <% })%>
+    </div>
+    <h2>Total Price Rs: <%=totalPrice%></h2>
+    <% }else{ %>
+        <h1>No items in Cart</h1>
+        <% } %>
+
+</body>
+
+</html>
