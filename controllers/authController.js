@@ -21,6 +21,7 @@ const registerUser = async (req,res)=>{
             password:hashedPassowrd
         });
         await user.save();
+        req.session.user=user._id;
         res.redirect("/");
     }catch(error){
         console.log(error);
