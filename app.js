@@ -1,10 +1,10 @@
 const express= require("express");
+const MongoStore = require("connect-mongo");
 const dotenv= require("dotenv");
 const path= require("path");
 const connectDB= require('./config/db')
 const app= express();
 const session=require("express-session");
-const MongoStore = require("connect-mongo");
 const authRoutes= require("./routes/authRoutes");
 const isAuthenticated= require("./middleware/authMiddleware");
 const productRoutes=require("./routes/productRoutes");
