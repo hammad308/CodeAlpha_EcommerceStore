@@ -45,13 +45,16 @@
                         <a href="/products/<%= product._id %>" class="btn btn-primary w-100">
                             View Details
                         </a>
-                        <% if(product.user.isAdmin){ %>
+                        <% if(product.user.isAdmin){ %> 
                         <form action="/delete-product/<%= product._id %>" method="post">
                             <button class="btn btn-danger w-100 mt-2">
                                 Delete Product
                             </button>
                         </form>
                         <a href="/edit-product/<%= product._id %>" class="btn btn-warning w-100 mt-2">Edit Product</a>
+                        <hr>
+                         <h6 class="mt-2  text-center color-dark" style="font-size: 1.2rem;">Your upload</h6> 
+                          <hr>
                         <% }%>
                     </div>
                 </div>
