@@ -12,7 +12,7 @@ const registerUser = async (req,res)=>{
         const {name,email,password}=req.body;
         const existingUser= await User.findOne({email});
         if(existingUser){
-            return res.send("User already exists");
+            return res.json({message:"User already exists"});
         }
         const hashedPassowrd= await bcrypt.hash(password,10);
         const user = new User({
@@ -39,7 +39,7 @@ const loginUser=async (req,res)=>{
             return res.send("Email or Password Incorrect");
         }
         req.session.user=user._id;
-        res.send("Login Successful");
+        res.redirect("/products");
     }catch(error){
         console.log(error);
         res.send("Login Failed");
