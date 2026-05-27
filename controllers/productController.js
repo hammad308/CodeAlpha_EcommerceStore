@@ -94,11 +94,31 @@ const addToCart = async (req, res) => {
         res.send("Failed to Add product to Cart")
     }
 }
+const removeFromCart=async (req,res)=>{
+    try{
+        const userId=req.session.user;
+        const productId=req.params.id;
+        let cart= await Cart.findOne({
+            user:userId
+        })
+        if(!cart){
+            console.log("Ji")
+            return res.redirect("/cart");
+        }
+        cart.items=cart.items.filter(item=>item.product.toString() !==productId);
+        await cart.save();
+        res.redirect("/cart");
+    }catch(error){
+        console.log(error.message);
+        res.send("Failed to remove from Product");
+    }
+}
 module.exports = {
     showAddProductPage,
     addProduct,
     showProducts,
     showSingleProduct,
     showCart,
-    addToCart
+    addToCart,
+    removeFromCart
 }

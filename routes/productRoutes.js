@@ -8,7 +8,8 @@ const {
     showProducts,
     showSingleProduct,
     addToCart,
-    showCart 
+    showCart,
+    removeFromCart 
 }= require("../controllers/productController");
 
 router.get("/add-product",showAddProductPage);
@@ -22,5 +23,7 @@ router.get("/products/:id",showSingleProduct);
 router.get("/cart",isAuthenticated,showCart);
 
 router.post("/add-to-cart/:id",isAuthenticated,addToCart);
+
+router.post("/remove-from-cart/:id",isAuthenticated,removeFromCart);
 
 module.exports=router;

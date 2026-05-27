@@ -20,6 +20,9 @@
                     <p>
                         Quantity: <%= item.quantity %>
                     </p>
+                    <form action="/remove-from-cart/<%= item.product._id %>" method="post">
+                        <button type="submit">Remove from Cart</button>
+                    </form>
                 </div>
                 <% })%>
     </div>
