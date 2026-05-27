@@ -4,6 +4,7 @@ const path= require("path");
 const connectDB= require('./config/db')
 const app= express();
 const session=require("express-session");
+const MongoStore = require("connect-mongo");
 const authRoutes= require("./routes/authRoutes");
 const isAuthenticated= require("./middleware/authMiddleware");
 const productRoutes=require("./routes/productRoutes");
@@ -18,7 +19,13 @@ dotenv.config();
 app.use(session({
 secret:process.env.SESSION_SECRET,
 resave:false,
-saveUninitialized:false
+saveUninitialized:false,
+store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI
+    }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
 }));
 
 //View Engine
