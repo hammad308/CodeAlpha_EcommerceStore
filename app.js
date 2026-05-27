@@ -12,14 +12,15 @@ const productRoutes=require("./routes/productRoutes");
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
+dotenv.config();
+
 //session
 app.use(session({
-secret:"mySecretKey",
+secret:process.env.SESSION_SECRET,
 resave:false,
 saveUninitialized:false
 }));
 
-dotenv.config();
 //View Engine
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
