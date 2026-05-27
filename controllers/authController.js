@@ -24,7 +24,7 @@ const registerUser = async (req,res)=>{
         res.redirect("/");
     }catch(error){
         console.log(error);
-        res.send("Registration Failed");
+        res.json({message:"Registration Failed"});
     }
 };
 const loginUser=async (req,res)=>{
@@ -32,23 +32,23 @@ const loginUser=async (req,res)=>{
         const {email,password}=req.body;
         const user=await User.findOne({email});
         if(!user){
-           return res.send("User not Found");
+           return res.json({message:"User not Found"});
         }
         const isMatch=await bcrypt.compare(password,user.password);
         if(!isMatch){
-            return res.send("Email or Password Incorrect");
+            return res.json({message:"Email or Password Incorrect"});
         }
         req.session.user=user._id;
         res.redirect("/products");
     }catch(error){
         console.log(error);
-        res.send("Login Failed");
+        res.json({message:"Login Failed"});
     }
 }
 const logoutUser= (req,res)=>{
     req.session.destroy((error)=>{
         if(error){
-            return res.send("Logout Failed");
+            return res.json({message:"Logout Failed"});
         }
         res.redirect("/login");
     });
