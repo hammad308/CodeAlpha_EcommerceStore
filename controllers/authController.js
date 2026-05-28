@@ -40,7 +40,7 @@ const loginUser=async (req,res)=>{
             return res.json({message:"Email or Password Incorrect"});
         }
         req.session.user=user._id;
-        res.redirect("/products");
+        res.redirect("/");
     }catch(error){
         console.log(error);
         res.json({message:"Login Failed"});
