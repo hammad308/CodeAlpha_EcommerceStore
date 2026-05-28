@@ -16,7 +16,8 @@ const {
     showOrders,
     removeProduct,
     showEditPage,
-    updateProduct 
+    updateProduct,
+    showAdminProducts 
 }= require("../controllers/productController");
 
 router.get("/add-product",isAuthenticated,showAddProductPage);
@@ -46,5 +47,7 @@ router.post("/delete-product/:id",isAuthenticated,removeProduct);
 router.get("/edit-product/:id",isAuthenticated,showEditPage);
 
 router.post("/edit-product/:id",isAuthenticated,updateProduct);
+
+router.get("/user-uploads", isAuthenticated,showAdminProducts)
 
 module.exports=router;
