@@ -28,13 +28,19 @@ const showProducts = async (req, res) => {
         const search = req.query.search || "";
         const regex = new RegExp(search, "i");
         let products;
+        let isFound = true;
         if (search.trim() === "" || !search) {
             products = await Product.find().populate("user");
-            products.forEach(product => {
-                if (product.user._id.toString() === userId) {
-                    product.user.isAdmin = true;
-                }
-            });
+            if (products.length === 0) {
+                isFound = false;
+            }
+            else {
+                products.forEach(product => {
+                    if (product.user._id.toString() === userId) {
+                        product.user.isAdmin = true;
+                    }
+                });
+            }
         }
         else {
             products = await Product.find({
@@ -42,9 +48,8 @@ const showProducts = async (req, res) => {
             });
         }
 
-        res.render("pages/products", { products });
+        res.render("pages/products", { products, isFound });
     } catch (error) {
-        console.log(error.message);
         res.json({ Error_message: "cannot fetch products" });
     }
 }
@@ -238,6 +243,22 @@ const updateProduct = async (req, res) => {
         res.json({ message: "Failed to Edit Product" });
     }
 }
+const showAdminProducts = async (req, res) => {
+    try {
+        let products = await Product.find().populate("user");
+        let adminHasProduct=false;
+        products.forEach(product => {
+            if (product.user._id.toString() === req.session.user) {
+                product.user.isAdmin = true;
+                adminHasProduct=true;
+            }
+        });
+        res.render("pages/userProducts", { products, adminHasProduct });
+    } catch (error) {
+        console.log(error.message);
+        res.json({ message: "Failed to Load Your Uploads" });
+    }
+}
 module.exports = {
     showAddProductPage,
     addProduct,
@@ -252,5 +273,6 @@ module.exports = {
     showOrders,
     removeProduct,
     showEditPage,
-    updateProduct
+    updateProduct,
+    showAdminProducts
 }
