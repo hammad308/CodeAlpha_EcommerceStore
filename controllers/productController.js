@@ -34,13 +34,6 @@ const showProducts = async (req, res) => {
             if (products.length === 0) {
                 isFound = false;
             }
-            else {
-                products.forEach(product => {
-                    if (product.user._id.toString() === userId) {
-                        product.user.isAdmin = true;
-                    }
-                });
-            }
         }
         else {
             products = await Product.find({
@@ -200,7 +193,7 @@ const showOrders = async (req, res) => {
         const orders = await Order.find({
             user: req.session.user
         }).populate("items.product");
-        res.render("pages/orders", { orders })
+        res.render("pages/orders", { orders})
 
     } catch (error) {
         res.json({ message: "Failed to load Orders" })
@@ -238,7 +231,7 @@ const updateProduct = async (req, res) => {
             image,
             price
         });
-        res.redirect("/products");
+        res.redirect("/user-uploads");
     } catch (error) {
         res.json({ message: "Failed to Edit Product" });
     }
