@@ -128,13 +128,21 @@ The app uses the following environment variables:
 
 ## Screenshots
 
-Add screenshots here before uploading to GitHub to make the repository more polished. A good set would be:
-
 - Home page
+  <img width="1896" height="980" alt="image" src="https://github.com/user-attachments/assets/b496f72f-8997-4214-8e0c-fddafcdf0616" />
+
 - Product listing page
+  <img width="1869" height="986" alt="image" src="https://github.com/user-attachments/assets/13511c40-f27d-4e7e-97c0-1cf1c0a41c75" />
+
 - Product details page
+  <img width="1870" height="956" alt="image" src="https://github.com/user-attachments/assets/e8af245d-ace3-43b6-88ff-814a8b5e9998" />
+
 - Cart page
+  <img width="1828" height="977" alt="image" src="https://github.com/user-attachments/assets/460b0e33-7e65-44d8-a400-8efad4538b31" />
+
 - Orders page
+  <img width="1813" height="991" alt="image" src="https://github.com/user-attachments/assets/d1f2fe2f-5d0b-4fbf-a6cd-4fa9588bf400" />
+
 
 ## Future Improvements
 
@@ -159,8 +167,8 @@ This project is a practical example of how to combine:
 
 Replace this section with your own details before publishing:
 
-- Name: Your Name
-- GitHub: `https://github.com/your-username`
+- Name: Muhammad Hammad Ali
+- GitHub: `https://github.com/hammad308`
 - LinkedIn: `https://linkedin.com/in/your-profile`
 
 ## License
